@@ -45,7 +45,7 @@ function Interview({params}) {
                     <h2 className='flex gap-1 mb-1'>
                         <Lightbulb className='w-5'/> <strong>Information: </strong>
                     </h2>
-                    <h2>{process.env.NEXT_PUBLIC_INFO}</h2>
+                    <h2>{process.env.NEXT_PUBLIC_INFO}</h2> 
                 </div>
             </div>
 
