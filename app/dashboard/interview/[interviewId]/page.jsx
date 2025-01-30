@@ -4,6 +4,8 @@ import { db } from '@/utils/db'
 import { MockInterview } from '@/utils/schema'
 import { eq } from 'drizzle-orm'
 import { Lightbulb, WebcamIcon } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React, { use, useEffect, useState } from 'react'
 import Webcam from 'react-webcam'
 
@@ -12,6 +14,10 @@ function Interview({params}) {
     const [webcamEnable , setWebcamEnable] = useState(false)
     const actualParams = use(params);
     const interviewId = actualParams.interviewId;
+    const path = usePathname();
+
+    //console.log(path);
+    
     useEffect(() => {
     //console.log(interviewId);
     GetInterviewDetails()
@@ -68,7 +74,9 @@ function Interview({params}) {
         </div>
         
         <div className='flex justify-center flex-col items-center mt-10'>
-            <Button className="bg-primary text-white hover:text-gray-200">Start Interview</Button>
+            <Link href={path+"/start"}>
+                <Button className="bg-primary text-white hover:text-gray-200">Start Interview</Button>
+            </Link>
         </div>
     </div>
   )
