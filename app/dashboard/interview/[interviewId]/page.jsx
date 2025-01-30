@@ -63,7 +63,7 @@ function Interview({params}) {
                 }}/> : 
                 <WebcamIcon className='h-72 w-full my-7 p-10 bg-secondary rounded-lg border'/>
             }
-            <Button className="bg-secondary text-purple-700 w-full hover:text-purple-700 hover:bg-slate-200" onClick={()=>setWebcamEnable(true)}>Start Webcam</Button>
+            <Button className="bg-secondary text-purple-700 w-full hover:text-purple-700 hover:bg-slate-200 mt-3" onClick={()=>setWebcamEnable(true)}>Start Webcam</Button>
             </div>
         </div>
         
