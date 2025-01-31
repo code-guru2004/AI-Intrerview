@@ -20,7 +20,7 @@ function Header() {
 
         <ul className='hidden md:flex gap-6'>
             <li className={`hover:text-primary hover:font-bold p-2 rounded transition-all cursor-pointer ${path=='/dashboard' && 'text-primary font-bold'}`}>
-                <Link href={'#'}>
+                <Link href='/dashboard'>
                     Dashboard
                 </Link>
             </li>
