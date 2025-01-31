@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Webcam from 'react-webcam'
 import useSpeechToText from 'react-hook-speech-to-text';
+import { Mic, Mic2Icon } from 'lucide-react';
 
 function RecordAnswerSection() {
     const {
@@ -16,6 +17,11 @@ function RecordAnswerSection() {
         continuous: true,
         useLegacyResults: false
       });
+
+      const [userAnswer , setUserAnswer] = useState("")
+      useEffect(()=>{
+        results.map((result)=>setUserAnswer(prevAns=>prevAns+result?.transcript))
+      },[results])
   return (
     <div className='flex flex-col items-center'>
         <div className='flex flex-col justify-center items-center bg-secondary rounded-lg p-5 my-10'>
@@ -31,20 +37,19 @@ function RecordAnswerSection() {
         />
         </div>
 
-        <Button className="bg-primary text-white hover:text-slate-100">Record Answer</Button>
+        <Button className="bg-primary text-white hover:text-slate-100" onClick={isRecording?stopSpeechToText:startSpeechToText}>
+            {
+                isRecording ? 
+                <h2>
+                    <Mic/> 'Recording...'
+                </h2> : "Record Answer"
 
-        <div>
-        <h1>Recording: {isRecording.toString()}</h1>
-      <button onClick={isRecording ? stopSpeechToText : startSpeechToText}>
-        {isRecording ? 'Stop Recording' : 'Start Recording'}
-      </button>
-      <ul>
-        {results.map((result) => (
-          <li key={result.timestamp}>{result.transcript}</li>
-        ))}
-        {interimResult && <li>{interimResult}</li>}
-      </ul>
-        </div>
+            }
+           
+        </Button>
+
+        <Button onClick={()=>console.log(userAnswer)
+        }>Show</Button>
     </div>
   )
 }
