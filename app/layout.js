@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
        
        <ClerkLoading>
           <div className="flex items-center justify-center h-screen text-2xl">
-            <Loading/>
+            Loading...
           </div>
         </ClerkLoading>
         <ClerkLoaded>

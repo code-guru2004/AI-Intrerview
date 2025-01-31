@@ -1,6 +1,6 @@
 'use client'
 import { useUser } from '@clerk/clerk-react';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { useEffect } from 'react'; // Import useEffect
 import { SignIn } from '@clerk/clerk-react';
 
@@ -10,7 +10,7 @@ export default function SignInPage() {
 
   useEffect(() => {
     if (isSignedIn) {
-      router.push('/dashboard'); // Navigate AFTER the render
+      redirect('/dashboard') // Navigate AFTER the render
     }
   }, [isSignedIn, router]); // Add isSignedIn and router to the dependency array
 
