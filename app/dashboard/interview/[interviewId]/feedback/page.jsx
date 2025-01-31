@@ -9,6 +9,8 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ChevronsUpDown } from "lucide-react"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 function FeedBack({ params }) {
   const actualParams = use(params);
@@ -79,6 +81,9 @@ function FeedBack({ params }) {
             </Collapsible>
           ))}
       </div>
+      <Link href={"/dashboard"}>
+        <Button className="bg-primary text-white hover:text-slate-200">Go To Home</Button>
+      </Link>
     </div>
   );
 }
