@@ -50,6 +50,7 @@ function RecordAnswerSection() {
 
         <Button onClick={()=>console.log(userAnswer)
         }>Show</Button>
+        <p>{userAnswer}</p>
     </div>
   )
 }
