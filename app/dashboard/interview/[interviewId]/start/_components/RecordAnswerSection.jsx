@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import Webcam from 'react-webcam'
 import useSpeechToText from 'react-hook-speech-to-text';
-import { Mic, Mic2Icon } from 'lucide-react';
+import { Mic, Mic2Icon, MicOff } from 'lucide-react';
 
 function RecordAnswerSection() {
     const {
@@ -18,10 +18,20 @@ function RecordAnswerSection() {
         useLegacyResults: false
       });
 
-      const [userAnswer , setUserAnswer] = useState("")
+      const [userAnswer , setUserAnswer] = useState("");
+
       useEffect(()=>{
         results.map((result)=>setUserAnswer(prevAns=>prevAns+result?.transcript))
       },[results])
+
+      const SaveUserAnswer=()=>{
+        if(isRecording){
+            stopSpeechToText()
+        }
+        else{
+            startSpeechToText();
+        }
+      }
   return (
     <div className='flex flex-col items-center'>
         <div className='flex flex-col justify-center items-center bg-secondary rounded-lg p-5 my-10'>
@@ -37,20 +47,22 @@ function RecordAnswerSection() {
         />
         </div>
 
-        <Button className="bg-primary text-white hover:text-slate-100" onClick={isRecording?stopSpeechToText:startSpeechToText}>
+        <Button className={`bg-primary text-white hover:text-slate-100 ${isRecording&&'bg-secondary text-red-700 hover:bg-slate-300 hover:text-purple-800'}`} onClick={isRecording?stopSpeechToText:startSpeechToText}>
             {
                 isRecording ? 
-                <h2>
-                    <Mic/> 'Recording...'
-                </h2> : "Record Answer"
+                <h2 className='flex items-center gap-1'>
+                    <MicOff /> Stop Recording
+                </h2> : 
+                <h2 className='flex items-center gap-1'>
+                    <Mic />
+                    Start Recording
+                </h2>
 
             }
            
         </Button>
 
-        <Button onClick={()=>console.log(userAnswer)
-        }>Show</Button>
-        <p>{userAnswer}</p>
+        
     </div>
   )
 }
