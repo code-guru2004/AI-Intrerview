@@ -5,6 +5,8 @@ import { eq } from 'drizzle-orm';
 import React, { use, useEffect, useState } from 'react'
 import QuestionSection from './_components/QuestionSection';
 import RecordAnswerSection from './_components/RecordAnswerSection';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 function StartInterview({params}) {
     const actualParams = use(params);
@@ -33,10 +35,31 @@ function StartInterview({params}) {
     <div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
             {/* Questions */}
-            <QuestionSection mockInterviewQuestion={mockInterviewQuestion} activeQuestionIndex={activeQuestionIndex}/>
+            <QuestionSection 
+            mockInterviewQuestion={mockInterviewQuestion} 
+            activeQuestionIndex={activeQuestionIndex}
+            />
 
             {/* Video and Mic */}
-            <RecordAnswerSection/>
+            <RecordAnswerSection
+            mockInterviewQuestion={mockInterviewQuestion} 
+            activeQuestionIndex={activeQuestionIndex}
+            interviewData={interviewData}
+            />
+        </div>
+        <div className='flex justify-center  md:justify-end gap-5 my-5'>
+            { activeQuestionIndex>0 &&
+                <Button onClick={()=>setActiveQuestionIndex(prev=>prev-1)} className="bg-sky-600 text-white">Previous Question</Button>
+            }
+            { activeQuestionIndex<(process.env.NEXT_PUBLIC_QUESTION_COUNT-1)&&
+                <Button onClick={()=>setActiveQuestionIndex(prev=>prev+1)} className="bg-green-600 text-white">Next Question</Button>
+            }
+            {
+                activeQuestionIndex===(process.env.NEXT_PUBLIC_QUESTION_COUNT-1)&&
+                <Link href={`/dashboard/interview/${interviewId}/feedback`}>
+                    <Button className="bg-red-600 text-white hover:text-slate-100">End Interview</Button>
+                </Link>
+            }
         </div>
     </div>
   )
