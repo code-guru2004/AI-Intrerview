@@ -50,8 +50,8 @@ export default function RootLayout({ children }) {
           </div>
         </ClerkLoading>
         <ClerkLoaded>
-          <div className=" ">
-            <div className="flex flex-col h-screen ">
+          <div className="">
+            <div className="flex flex-col h-screen justify-between">
              
               
               {children}
