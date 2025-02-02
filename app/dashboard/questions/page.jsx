@@ -31,7 +31,7 @@ function QuestionsPage() {
 
         const result = await chatSession.sendMessage(prompt)
         const questionJSONres = (result.response.text()).replace('```json','').replace('```','')
-        console.log(questionJSONres);
+        //console.log(questionJSONres);
         setQuestions(questionJSONres);
 
         if(questionJSONres){
@@ -53,7 +53,7 @@ function QuestionsPage() {
     }
     useEffect(()=>{
         if(questionId !== ""){
-            console.log(questionId);
+            //console.log(questionId);
             getQuestionsFromDB()
         }
      },[questionId]);
@@ -61,7 +61,7 @@ function QuestionsPage() {
     const getQuestionsFromDB=async ()=>{
         const result = await db.select().from(PrepareQuestions).where(eq(PrepareQuestions.questionId,questionId));
         const jsonQuestionRes = JSON.parse(result[0]?.jsonQuestionResp)
-        console.log(jsonQuestionRes);
+        //console.log(jsonQuestionRes);
         setQuestionList(jsonQuestionRes);
     }
 return (
