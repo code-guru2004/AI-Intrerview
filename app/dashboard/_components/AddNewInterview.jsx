@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { chatSession } from "@/utils/GeminiAiModals";
-import { LoaderCircle } from "lucide-react";
+import { BadgeAlert, LoaderCircle } from "lucide-react";
 import { db } from "@/utils/db";
 import { MockInterview } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
@@ -55,7 +55,7 @@ function AddNewInterview() {
             createdAt:moment().format('DD-MM-YYYY'),
           }).returning({mockId: MockInterview.mockId});
   
-          console.log("Inserted Mock Id: ",res);
+          //console.log("Inserted Mock Id: ",res);
 
           if(res){
             setOpen(false);
@@ -70,12 +70,13 @@ function AddNewInterview() {
   return (
     <div>
       <div
-        className="p-10 border rounded-lg bg-secondary hover:scale-105 hover:shadow-md cursor-pointer transition-all"
+        className="p-10 border rounded-lg bg-secondary hover:scale-105 hover:shadow-md cursor-pointer transition-all flex flex-col items-center justify-between"
         onClick={() =>{
           setOpen(true)
         setLoading(false) }}
       >
         <h2 className="font-bold text-lg text-center">+ Add New</h2>
+        <p className="text-xs flex items-center gap-1"><BadgeAlert className="text-sm text-red-600 w-5"/> Here you can attend interview as per your Job Role</p>
       </div>
 
       <Dialog open={open} onOpenChange={() => setOpen(!open)}>

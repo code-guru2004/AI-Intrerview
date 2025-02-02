@@ -24,14 +24,14 @@ function Header() {
                     Dashboard
                 </Link>
             </li>
-            <li className={`hover:text-primary hover:font-bold p-2 rounded transition-all cursor-pointer ${path=='/dashboard/question' && 'text-primary font-bold'}`}>
-                <Link href={'#'}>
+            <li className={`hover:text-primary hover:font-bold p-2 rounded transition-all cursor-pointer ${path=='/dashboard/questions' && 'text-primary font-bold'}`}>
+                <Link href='/dashboard/questions'>
                     Questions
                 </Link>
             </li>
-            <li className={`hover:text-primary hover:font-bold p-2 rounded transition-all cursor-pointer ${path=='/dashboard/upgrade' && 'text-primary font-bold'}`}>
-                <Link href={'#'}>
-                    Upgrade
+            <li className={`hover:text-primary hover:font-bold p-2 rounded transition-all cursor-pointer ${path=='/dashboard/interviewse' && 'text-primary font-bold'}`}>
+                <Link href='/dashboard/interviews'>
+                    All Interviews
                 </Link>
             </li>
             <li className={`hover:text-primary hover:font-bold p-2 rounded transition-all cursor-pointer ${path=='/dashboard/works' && 'text-primary font-bold'}`}>

@@ -5,16 +5,18 @@ import { MockInterview } from '@/utils/schema'
 import { eq } from 'drizzle-orm'
 import { Lightbulb, WebcamIcon } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { use, useEffect, useState } from 'react'
 import Webcam from 'react-webcam'
 
 function Interview({params}) {
+    const route = useRouter()
     const [interviewData , setInterviewData] = useState();
     const [webcamEnable , setWebcamEnable] = useState(false)
     const actualParams = use(params);
     const interviewId = actualParams.interviewId;
     const path = usePathname();
+    const [loading,setLoading] = useState(false)
 
     //console.log(path);
     
@@ -35,7 +37,11 @@ function Interview({params}) {
         if (!str) return str; // Handle empty strings
         return str.charAt(0).toUpperCase() + str.slice(1);
       }
-
+      const gotoStart =()=>{
+        setLoading(true)
+        route.push(path+"/start")
+        setLoading(false)
+      }
   return (
     <div className='my-10 flex justify-center flex-col items-center w-full gap-12'>
         <h2 className='font-bold text-2xl'>Let's Get Started</h2>
@@ -74,9 +80,9 @@ function Interview({params}) {
         </div>
         
         <div className='flex justify-center flex-col items-center mt-10'>
-            <Link href={path+"/start"}>
-                <Button className="bg-primary text-white hover:text-gray-200">Start Interview</Button>
-            </Link>
+            {/* <Link href={path+"/start"}> */}
+                <Button className={`bg-primary text-white hover:text-gray-200 ${loading&&'disabled:true'}`} onClick={gotoStart}>Start Interview</Button>
+            {/* </Link> */}
         </div>
     </div>
   )
