@@ -14,7 +14,7 @@ function QuestionList({ questionList }) {
       {questionList &&
         questionList.map((question, index) => (
           <Collapsible key={index} className="w-full bg-secondary p-2 rounded">
-            <CollapsibleTrigger className="font-bold flex items-center gap-1 justify-between w-full">
+            <CollapsibleTrigger className="font-bold flex items-center gap-1 justify-between w-full mb-4">
                 <p className="flex items-start gap-1 text-left justify-start">
                   <CircleHelp className="w-5 text-primary"/> {question?.question} 
                 </p>

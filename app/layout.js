@@ -13,6 +13,7 @@ import "./globals.css";
 import { redirect } from "next/navigation";
 import Loading from "./dashboard/_components/Loading";
 import { Toaster } from "@/components/ui/toaster";
+import Footer from "@/components/shared/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,6 +62,7 @@ export default function RootLayout({ children }) {
               
               {children}
               <Toaster />
+              <Footer/>
             </div>
           </div>
         </ClerkLoaded>
